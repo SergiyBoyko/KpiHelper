@@ -1,7 +1,8 @@
-package ua.devserhii.kpihelper
+package ua.devserhii.kpihelper.pages.main.presentation.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import ua.devserhii.kpihelper.R
 
 class MainActivity : AppCompatActivity() {
 
