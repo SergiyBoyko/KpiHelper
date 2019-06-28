@@ -6,5 +6,4 @@ package ua.devserhii.kpihelper.persistance
 
 const val BASE_URL = "http://api.rozklad.org.ua/"
 const val BASE_API_URL = "http://api.rozklad.org.ua/v2/"
-//const val SEARCH_GROUP = "groups/?search={'query':'{text}'}"
 const val SEARCH_GROUP = "groups/"

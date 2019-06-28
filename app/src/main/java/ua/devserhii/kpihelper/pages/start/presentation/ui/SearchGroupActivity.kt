@@ -6,10 +6,12 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_search_group.*
+import org.jetbrains.anko.startActivity
 import org.koin.android.ext.android.inject
 import ua.devserhii.kpihelper.R
 import ua.devserhii.kpihelper.global.extensions.afterTextChanged
 import ua.devserhii.kpihelper.global.liteMoxy.MvpAppCompatActivity
+import ua.devserhii.kpihelper.pages.main.presentation.ui.MainActivity
 import ua.devserhii.kpihelper.pages.start.presentation.SearchGroupEvents
 import ua.devserhii.kpihelper.pages.start.presentation.SearchGroupPresenter
 
@@ -26,29 +28,31 @@ class SearchGroupActivity : MvpAppCompatActivity<SearchGroupEvents>() {
 
         group_name_input.afterTextChanged {
             val group = it.toString()
-            if (group.isNotBlank() && group.length > 2) {
+            if (group.isNotBlank() && group.length > 1) {
                 presenter.searchGroup(group)
             }
         }
     }
 
     override fun update(event: SearchGroupEvents) =
-        when (event) {
-            is SearchGroupEvents.ShowSearchResult -> {
-                group_name_input.setAdapter(ArrayAdapter(
-                    this, // Context
-                    android.R.layout.simple_dropdown_item_1line, // Layout
-                    event.groups.toTypedArray().map { it.groupFullName } // Array
-                ))
-                group_name_input.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-                    group_name_input.setText(event.groups[position].groupFullName)
+            when (event) {
+                is SearchGroupEvents.ShowSearchResult -> {
+                    group_autocomplete.setAdapter(ArrayAdapter(
+                            this, // Context
+                            R.layout.simple_dropdown_item, // Layout
+                            event.groups.toTypedArray().map { it.groupFullName } // Array
+                    ))
+                    group_autocomplete.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
+                        group_name_input.setText(event.groups[position].groupFullName)
+                        // TODO save in shared prefs
+                        startActivity<MainActivity>()
+                        finish()
+                    }
+                    group_autocomplete.showDropDown()
                 }
-                group_name_input.threshold = 3
-                group_name_input.showDropDown()
             }
-        }
 
 }
 
 fun Context.toast(message: CharSequence) =
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
