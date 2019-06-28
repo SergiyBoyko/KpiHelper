@@ -1,10 +1,10 @@
 package ua.devserhii.kpihelper.pages.main.presentation.ui
 
+import android.app.Activity
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import ua.devserhii.kpihelper.R
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

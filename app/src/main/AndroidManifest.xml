@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           xmlns:dist="http://schemas.android.com/apk/distribution"
-          xmlns:tools="http://schemas.android.com/tools" package="ua.devserhii.kpihelper">
+          xmlns:tools="http://schemas.android.com/tools"
+          package="ua.devserhii.kpihelper">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <dist:module dist:instant="true"/>
 
     <application
+            android:name=".KpiApp"
             android:allowBackup="true"
+            android:usesCleartextTraffic="true"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
-            android:theme="@style/AppTheme" tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".pages.main.presentation.ui.MainActivity"
-                  android:theme="@style/NoBarTheme">
+            android:theme="@style/AppTheme"
+            tools:ignore="GoogleAppIndexingWarning">
+        <activity
+                android:name=".pages.main.presentation.ui.MainActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/NoBarTheme"/>
+        <activity
+                android:name=".pages.start.presentation.ui.SearchGroupActivity"
+                android:screenOrientation="portrait"
+                android:theme="@style/NoBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
