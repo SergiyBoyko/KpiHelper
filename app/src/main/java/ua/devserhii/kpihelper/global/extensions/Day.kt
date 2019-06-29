@@ -6,12 +6,12 @@ import ua.devserhii.kpihelper.pages.main.timetable.models.Day
  * Created by Serhii Boiko on 29.06.2019.
  */
 
-fun Day.name(): String = when (dayNumber) {
-    1 -> "Monday"
-    2 -> "Tuesday"
-    3 -> "Wednesday"
-    4 -> "Thursday"
-    5 -> "Friday"
-    6 -> "Saturday"
+fun Day.name(weekNumber: Int): String = when (dayNumber) {
+    1 -> "Monday-$weekNumber"
+    2 -> "Tuesday-$weekNumber"
+    3 -> "Wednesday-$weekNumber"
+    4 -> "Thursday-$weekNumber"
+    5 -> "Friday-$weekNumber"
+    6 -> "Saturday-$weekNumber"
     else -> ""
 }

@@ -19,19 +19,23 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".pages.main.presentation.ui.MainActivity"
+            android:name=".pages.splash.SplashActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Light" />
-        <activity
-            android:name=".pages.start.presentation.ui.StartActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.Dark">
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".pages.main.presentation.ui.MainActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Light" />
+        <activity
+            android:name=".pages.start.presentation.ui.StartActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Dark" />
     </application>
 
 </manifest>

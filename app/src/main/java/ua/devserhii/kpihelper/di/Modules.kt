@@ -3,6 +3,8 @@ package ua.devserhii.kpihelper.di
 import androidx.room.Room
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
+import ua.devserhii.kpihelper.pages.main.prefs.logic.ExitUseCase
+import ua.devserhii.kpihelper.pages.main.prefs.presentation.PrefsPresenter
 import ua.devserhii.kpihelper.pages.main.timetable.logic.GetCurrentTimetableUseCase
 import ua.devserhii.kpihelper.pages.main.timetable.persistance.TimetableDataSource
 import ua.devserhii.kpihelper.pages.main.timetable.persistance.remote.TimetableRemoteDataSource
@@ -34,6 +36,7 @@ val databaseModule = module {
 val presenterModule = module {
     factory { SearchGroupPresenter(get(), get()) }
     factory { TimetablePresenter(get()) }
+    factory { PrefsPresenter(get()) }
 }
 
 val dataModule = module {
@@ -45,4 +48,5 @@ val logicModule = module {
     single { SearchGroupUseCase(get()) }
     single { DownloadTimetableUseCase(get()) }
     single { GetCurrentTimetableUseCase(get()) }
+    single { ExitUseCase(get()) }
 }

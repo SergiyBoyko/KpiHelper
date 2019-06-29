@@ -1,6 +1,8 @@
 package ua.devserhii.kpihelper.pages.main.timetable.persistance.remote
 
+import ua.devserhii.kpihelper.global.extensions.getHandledBody
 import ua.devserhii.kpihelper.global.extensions.getHandledData
+import ua.devserhii.kpihelper.global.model.KpiResponse
 import ua.devserhii.kpihelper.pages.main.timetable.models.Timetable
 import ua.devserhii.kpihelper.pages.main.timetable.persistance.TimetableDataSource
 import ua.devserhii.kpihelper.persistance.api.KpiApi
@@ -13,6 +15,9 @@ class TimetableRemoteDataSource(private val api: KpiApi, private val appDatabase
 
     override suspend fun updateTimetable(groupName: String): Timetable {
         val timetable: Timetable = api.fetchTimetableAsync(groupName).await().getHandledData()
+        val weekResponse: KpiResponse<Int> = api.fetchWeekNumberAsync().await().getHandledBody()
+        timetable.weekNumberTimestamp = weekResponse.timeStamp
+        timetable.weekNumber = weekResponse.data
         appDatabase.timetableDao().insertCurrent(timetable)
         return timetable
     }

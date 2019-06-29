@@ -30,7 +30,8 @@ class TimetableAdapter(
         list.removeAllViews()
 
         val day = days[position]
-        holder.itemView.findViewById<TextView>(R.id.day_name).text = day.name()
+        holder.itemView.findViewById<TextView>(R.id.day_name)
+                .text = day.name(day.lessons.first().lessonWeek)
         for (lesson in day.lessons) {
             val lessonView = LessonView(holder.itemView.context)
             lessonView.bindLesson(lesson)

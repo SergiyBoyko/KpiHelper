@@ -12,5 +12,8 @@ import ua.devserhii.kpihelper.persistance.database.Converters
 data class Timetable(
         @PrimaryKey(autoGenerate = true) val id: Int,
         @SerializedName("group") val group: Group,
-        @SerializedName("weeks") val weeks: Weeks
+        @SerializedName("weeks") val weeks: Weeks,
+
+        var weekNumber: Int,
+        var weekNumberTimestamp: Int
 )

@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.fragment_search_group.*
+import org.jetbrains.anko.support.v4.defaultSharedPreferences
 import org.jetbrains.anko.support.v4.startActivity
 import org.koin.android.ext.android.inject
 import ua.devserhii.kpihelper.R
@@ -54,6 +55,7 @@ class SearchGroupFragment : MvpFragment<SearchGroupEvents>() {
                 }
                 SearchGroupEvents.ShowLoading -> progress_group_loading.visibility = View.VISIBLE
                 SearchGroupEvents.HideLoading -> {
+                    defaultSharedPreferences.edit().putBoolean("helper_focused", true).apply()
                     progress_group_loading.visibility = View.GONE
                     startActivity<MainActivity>()
                     activity!!.finish()

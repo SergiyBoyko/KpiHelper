@@ -20,4 +20,8 @@ interface KpiApi {
     @GET(FETCH_TIMETABLE)
     fun fetchTimetableAsync(@Path("groupName") groupName: String)
             : Deferred<Response<KpiResponse<Timetable>>>
+
+    @GET(WEEK_NUMBER)
+    fun fetchWeekNumberAsync()
+            : Deferred<Response<KpiResponse<Int>>>
 }
