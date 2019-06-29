@@ -23,7 +23,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Light" />
         <activity
-            android:name=".pages.start.presentation.ui.SearchGroupActivity"
+            android:name=".pages.start.presentation.ui.StartActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark">
             <intent-filter>

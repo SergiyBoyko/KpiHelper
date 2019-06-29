@@ -1,4 +1,4 @@
-package ua.devserhii.kpihelper.persistance
+package ua.devserhii.kpihelper.persistance.api
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.Interceptor

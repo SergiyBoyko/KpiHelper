@@ -7,8 +7,20 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent">
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            android:id="@+id/progress_group_loading"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:indeterminateTint="@android:color/white"
+            android:indeterminateTintMode="src_atop"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <AutoCompleteTextView
             android:id="@+id/group_autocomplete"

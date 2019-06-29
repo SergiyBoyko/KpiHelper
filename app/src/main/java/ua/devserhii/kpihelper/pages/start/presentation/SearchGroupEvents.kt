@@ -7,4 +7,6 @@ import ua.devserhii.kpihelper.pages.start.models.Group
  */
 sealed class SearchGroupEvents {
     class ShowSearchResult(val groups: List<Group>) : SearchGroupEvents()
+    object ShowLoading : SearchGroupEvents()
+    object HideLoading : SearchGroupEvents()
 }

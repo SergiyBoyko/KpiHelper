@@ -1,12 +1,18 @@
 package ua.devserhii.kpihelper.di
 
+import androidx.room.Room
+import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
+import ua.devserhii.kpihelper.pages.main.timetable.persistance.TimetableDataSource
+import ua.devserhii.kpihelper.pages.main.timetable.persistance.remote.TimetableRemoteDataSource
+import ua.devserhii.kpihelper.pages.start.logic.DownloadTimetableUseCase
 import ua.devserhii.kpihelper.pages.start.logic.SearchGroupUseCase
 import ua.devserhii.kpihelper.pages.start.persistance.SearchGroupDataSource
 import ua.devserhii.kpihelper.pages.start.persistance.remote.SearchGroupRemoteDataSource
 import ua.devserhii.kpihelper.pages.start.presentation.SearchGroupPresenter
-import ua.devserhii.kpihelper.persistance.ServiceGenerator
 import ua.devserhii.kpihelper.persistance.api.KpiApi
+import ua.devserhii.kpihelper.persistance.api.ServiceGenerator
+import ua.devserhii.kpihelper.persistance.database.AppDatabase
 
 /**
  * Created by Serhii Boiko on 23.06.2019.
@@ -15,14 +21,23 @@ val apiModule = module {
     single { ServiceGenerator().createService(KpiApi::class.java) }
 }
 
+val databaseModule = module {
+    single {
+        Room.databaseBuilder(androidApplication(), AppDatabase::class.java, "db").fallbackToDestructiveMigration()
+                .build()
+    }
+}
+
 val presenterModule = module {
-    factory { SearchGroupPresenter(get()) }
+    factory { SearchGroupPresenter(get(), get()) }
 }
 
 val dataModule = module {
     single<SearchGroupDataSource> { SearchGroupRemoteDataSource(get()) }
+    single<TimetableDataSource> { TimetableRemoteDataSource(get(), get()) }
 }
 
 val logicModule = module {
     single { SearchGroupUseCase(get()) }
+    single { DownloadTimetableUseCase(get()) }
 }

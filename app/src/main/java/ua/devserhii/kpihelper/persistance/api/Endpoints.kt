@@ -1,4 +1,4 @@
-package ua.devserhii.kpihelper.persistance
+package ua.devserhii.kpihelper.persistance.api
 
 /**
  * Created by Serhii Boiko on 23.06.2019.
@@ -7,3 +7,4 @@ package ua.devserhii.kpihelper.persistance
 const val BASE_URL = "http://api.rozklad.org.ua/"
 const val BASE_API_URL = "http://api.rozklad.org.ua/v2/"
 const val SEARCH_GROUP = "groups/"
+const val FETCH_TIMETABLE = "groups/{groupName}/timetable"
