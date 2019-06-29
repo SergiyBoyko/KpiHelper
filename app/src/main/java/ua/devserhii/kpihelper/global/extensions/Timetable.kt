@@ -2,6 +2,8 @@ package ua.devserhii.kpihelper.global.extensions
 
 import ua.devserhii.kpihelper.pages.main.timetable.models.Day
 import ua.devserhii.kpihelper.pages.main.timetable.models.Timetable
+import java.util.*
+import kotlin.math.abs
 
 /**
  * Created by Serhii Boiko on 29.06.2019.
@@ -49,4 +51,18 @@ fun Timetable.getDays(): List<Day> {
         days.add(secondWeekDays.saturday)
     }
     return days
+}
+
+fun Timetable.getCurrentWeek(): Int {
+    val now: Calendar = Calendar.getInstance()
+
+    val saved: Calendar = Calendar.getInstance()
+            .also { it.timeInMillis = weekNumberTimestamp.toLong() }
+
+    val weekSince: Int = (now.get(Calendar.WEEK_OF_YEAR) - saved.get(Calendar.WEEK_OF_YEAR)) % 2
+    return when {
+        abs(weekSince) == 0 -> weekNumber
+        weekSince == 1 -> 2
+        else -> 1
+    }
 }

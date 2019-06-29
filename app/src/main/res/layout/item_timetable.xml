@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    android:elevation="8dp">
+    android:clickable="true"
+    android:elevation="8dp"
+    android:focusable="true"
+    app:rippleColor="@color/colorAccent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,14 +19,11 @@
             android:id="@+id/day_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorAccent05"
             android:padding="8dp"
-            android:text="Monday"
-            android:textSize="16sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorAccent" />
+            android:textColor="@color/colorPrimary"
+            android:textSize="16sp"
+            tools:text="Monday" />
 
         <LinearLayout
             android:id="@+id/day_lessons"

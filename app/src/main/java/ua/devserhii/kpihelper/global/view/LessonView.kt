@@ -4,7 +4,11 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.view_lesson.view.*
+import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.textColor
+import org.jetbrains.anko.withAlpha
 import ua.devserhii.kpihelper.R
 import ua.devserhii.kpihelper.pages.main.timetable.models.Lesson
 
@@ -29,7 +33,15 @@ class LessonView : FrameLayout {
         addView(view)
     }
 
-    fun bindLesson(lesson: Lesson) {
+    fun bindLesson(lesson: Lesson, now: Boolean) {
+        if (now) {
+            backgroundColor = ContextCompat.getColor(context, R.color.colorAccent).withAlpha(0x1A)
+            val textColor = ContextCompat.getColor(context, R.color.colorAccent)
+            lesson_number.textColor = textColor
+            lesson_name.textColor = textColor
+            lesson_location.textColor = textColor
+        }
+
         lesson_number.text = lesson.lessonNumber.toString()
         lesson_name.text = lesson.lessonName
         val roomAndType = "${lesson.lessonRoom} ${lesson.lessonType}"

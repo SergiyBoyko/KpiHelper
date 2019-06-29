@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.fragment_timetable.*
 import org.koin.android.ext.android.inject
 import ua.devserhii.kpihelper.R
+import ua.devserhii.kpihelper.global.extensions.getCurrentWeek
 import ua.devserhii.kpihelper.global.extensions.getDays
 import ua.devserhii.kpihelper.global.liteMoxy.MvpFragment
 import ua.devserhii.kpihelper.pages.main.timetable.adapter.TimetableAdapter
@@ -34,7 +35,10 @@ class TimetableFragment : MvpFragment<TimetableEvents>() {
     override fun update(event: TimetableEvents) {
         when (event) {
             is TimetableEvents.ShowTimetable -> {
-                recycler_timetable.adapter = TimetableAdapter(event.timetable.getDays())
+                recycler_timetable.adapter = TimetableAdapter(
+                        event.timetable.getDays(),
+                        event.timetable.getCurrentWeek()
+                )
                 recycler_timetable.layoutManager = GridLayoutManager(context, 2)
             }
         }
