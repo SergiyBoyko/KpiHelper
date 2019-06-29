@@ -3,8 +3,10 @@ package ua.devserhii.kpihelper.di
 import androidx.room.Room
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
+import ua.devserhii.kpihelper.pages.main.timetable.logic.GetCurrentTimetableUseCase
 import ua.devserhii.kpihelper.pages.main.timetable.persistance.TimetableDataSource
 import ua.devserhii.kpihelper.pages.main.timetable.persistance.remote.TimetableRemoteDataSource
+import ua.devserhii.kpihelper.pages.main.timetable.presentation.TimetablePresenter
 import ua.devserhii.kpihelper.pages.start.logic.DownloadTimetableUseCase
 import ua.devserhii.kpihelper.pages.start.logic.SearchGroupUseCase
 import ua.devserhii.kpihelper.pages.start.persistance.SearchGroupDataSource
@@ -23,13 +25,15 @@ val apiModule = module {
 
 val databaseModule = module {
     single {
-        Room.databaseBuilder(androidApplication(), AppDatabase::class.java, "db").fallbackToDestructiveMigration()
+        Room.databaseBuilder(androidApplication(), AppDatabase::class.java, "db")
+                .fallbackToDestructiveMigration()
                 .build()
     }
 }
 
 val presenterModule = module {
     factory { SearchGroupPresenter(get(), get()) }
+    factory { TimetablePresenter(get()) }
 }
 
 val dataModule = module {
@@ -40,4 +44,5 @@ val dataModule = module {
 val logicModule = module {
     single { SearchGroupUseCase(get()) }
     single { DownloadTimetableUseCase(get()) }
+    single { GetCurrentTimetableUseCase(get()) }
 }
