@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.textColor
 import ua.devserhii.kpihelper.R
+import ua.devserhii.kpihelper.global.extensions.BREAK_TIME_MINUTES
 import ua.devserhii.kpihelper.global.extensions.inTime
 import ua.devserhii.kpihelper.global.extensions.name
 import ua.devserhii.kpihelper.global.view.LessonView
@@ -36,7 +37,8 @@ class TimetableAdapter(
         list.removeAllViews()
 
         val now: Calendar = Calendar.getInstance()
-        val currentDay: Int = now.get(Calendar.DAY_OF_WEEK)
+        // api week start with monday, Calendar start with sunday
+        val currentDay: Int = now.get(Calendar.DAY_OF_WEEK) - 1
 
         val day = days[position]
         val weekNumber = day.lessons.first().lessonWeek
@@ -52,7 +54,7 @@ class TimetableAdapter(
 
         for (lesson in day.lessons) {
             val lessonView = LessonView(holder.itemView.context)
-            lessonView.bindLesson(lesson, today && lesson.inTime())
+            lessonView.bindLesson(lesson, today && lesson.inTime(BREAK_TIME_MINUTES))
             list.addView(lessonView)
         }
     }

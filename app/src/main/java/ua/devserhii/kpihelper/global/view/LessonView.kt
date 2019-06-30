@@ -29,8 +29,7 @@ class LessonView : FrameLayout {
     }
 
     private fun initView() {
-        val view = View.inflate(context, R.layout.view_lesson, null)
-        addView(view)
+        addView(View.inflate(context, R.layout.view_lesson, null))
     }
 
     fun bindLesson(lesson: Lesson, now: Boolean) {

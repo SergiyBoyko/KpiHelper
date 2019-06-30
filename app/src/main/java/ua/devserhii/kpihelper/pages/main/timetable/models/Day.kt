@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 /**
  * Created by Serhii Boiko on 28.06.2019.
  */
-data class Day(
+open class Day(
 
         @SerializedName("day_name") val dayName: String,
         @SerializedName("day_number") val dayNumber: Int,

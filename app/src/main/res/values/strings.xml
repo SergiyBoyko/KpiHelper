@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">KpiHelper</string>
+
+    <string name="lesson_status">Status:\n%s</string>
+    <string name="lesson_time_location">%s %s\n%s - %s</string>
+    <string name="start_in">start in:</string>
+    <string name="end_in">end in:</string>
+    <string name="ago">ago:</string>
+    <string name="pending">Pending</string>
+    <string name="preparation">Preparation</string>
+    <string name="in_progress">In progress</string>
+    <string name="completed">Completed</string>
 </resources>
