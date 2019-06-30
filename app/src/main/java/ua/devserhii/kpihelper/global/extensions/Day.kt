@@ -13,5 +13,6 @@ fun Day.name(weekNumber: Int): String = when (dayNumber) {
     4 -> "Thursday-$weekNumber"
     5 -> "Friday-$weekNumber"
     6 -> "Saturday-$weekNumber"
+    7 -> "Sunday-$weekNumber"
     else -> ""
 }

@@ -32,6 +32,7 @@ class DashboardFragment : MvpFragment<DashboardEvents>() {
         when (event) {
             is DashboardEvents.ShowTitle -> dashboard_title.title = "Group: ${event.title}"
             is DashboardEvents.ShowLessonsDay -> {
+                no_lessons_note.visibility = View.GONE
                 progress_lessons_container.removeAllViews()
                 for (lesson in event.day.lessons) {
                     val progressLessonView = ProgressLessonView(activity!!)
@@ -40,6 +41,9 @@ class DashboardFragment : MvpFragment<DashboardEvents>() {
                 }
             }
             is DashboardEvents.ShowWeek -> day_of_week.text = event.week
+            is DashboardEvents.ShowNoLessonsDay -> {
+                no_lessons_note.visibility = View.VISIBLE
+            }
         }
     }
 }

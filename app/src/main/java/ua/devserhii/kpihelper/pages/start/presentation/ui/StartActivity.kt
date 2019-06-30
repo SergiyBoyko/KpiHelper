@@ -13,7 +13,12 @@ class StartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
-
-        replaceFragment(R.id.start_fragment_container, SearchGroupFragment())
+        showGroupContainer()
     }
+
+    fun showGroupContainer() =
+            replaceFragment(R.id.start_fragment_container, SearchGroupFragment())
+
+    fun showTeacherContainer() =
+            replaceFragment(R.id.start_fragment_container, SearchTeacherFragment())
 }

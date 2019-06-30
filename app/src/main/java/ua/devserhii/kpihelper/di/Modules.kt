@@ -12,9 +12,13 @@ import ua.devserhii.kpihelper.pages.main.timetable.persistance.remote.TimetableR
 import ua.devserhii.kpihelper.pages.main.timetable.presentation.TimetablePresenter
 import ua.devserhii.kpihelper.pages.start.logic.DownloadTimetableUseCase
 import ua.devserhii.kpihelper.pages.start.logic.SearchGroupUseCase
+import ua.devserhii.kpihelper.pages.start.logic.SearchTeacherUseCase
 import ua.devserhii.kpihelper.pages.start.persistance.SearchGroupDataSource
+import ua.devserhii.kpihelper.pages.start.persistance.SearchTeacherDataSource
 import ua.devserhii.kpihelper.pages.start.persistance.remote.SearchGroupRemoteDataSource
+import ua.devserhii.kpihelper.pages.start.persistance.remote.SearchTeacherRemoteDataSource
 import ua.devserhii.kpihelper.pages.start.presentation.SearchGroupPresenter
+import ua.devserhii.kpihelper.pages.start.presentation.SearchTeacherPresenter
 import ua.devserhii.kpihelper.persistance.api.KpiApi
 import ua.devserhii.kpihelper.persistance.api.ServiceGenerator
 import ua.devserhii.kpihelper.persistance.database.AppDatabase
@@ -36,6 +40,7 @@ val databaseModule = module {
 
 val presenterModule = module {
     factory { SearchGroupPresenter(get(), get()) }
+    factory { SearchTeacherPresenter(get()) }
     factory { TimetablePresenter(get()) }
     factory { PrefsPresenter(get()) }
     factory { DashboardPresenter(get()) }
@@ -43,11 +48,13 @@ val presenterModule = module {
 
 val dataModule = module {
     single<SearchGroupDataSource> { SearchGroupRemoteDataSource(get()) }
+    single<SearchTeacherDataSource> { SearchTeacherRemoteDataSource(get()) }
     single<TimetableDataSource> { TimetableRemoteDataSource(get(), get()) }
 }
 
 val logicModule = module {
     single { SearchGroupUseCase(get()) }
+    single { SearchTeacherUseCase(get()) }
     single { DownloadTimetableUseCase(get()) }
     single { GetCurrentTimetableUseCase(get()) }
     single { ExitUseCase(get()) }

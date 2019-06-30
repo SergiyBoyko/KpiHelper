@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.fragment_search_group.*
+import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.support.v4.defaultSharedPreferences
 import org.jetbrains.anko.support.v4.startActivity
 import org.koin.android.ext.android.inject
@@ -30,6 +31,9 @@ class SearchGroupFragment : MvpFragment<SearchGroupEvents>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        input_teacher_button.onClick {
+            (activity as StartActivity).showTeacherContainer()
+        }
         group_name_input.afterTextChanged {
             val group = it.toString()
             if (group.isNotBlank() && group.length > 1) {
