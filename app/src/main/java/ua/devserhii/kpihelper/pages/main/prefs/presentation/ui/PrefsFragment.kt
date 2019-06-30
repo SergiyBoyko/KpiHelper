@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.fragment_prefs.*
 import org.jetbrains.anko.sdk27.coroutines.onClick
 import org.jetbrains.anko.support.v4.defaultSharedPreferences
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 import org.koin.android.ext.android.inject
 import ua.devserhii.kpihelper.R
 import ua.devserhii.kpihelper.global.liteMoxy.MvpFragment
@@ -28,6 +29,8 @@ class PrefsFragment : MvpFragment<PrefsEvents>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         exit_button.onClick { presenter.exit() }
+        theme_button.onClick { toast("Coming soon") }
+        rate_button.onClick { toast("Not published yet") }
     }
 
     override fun update(event: PrefsEvents) {
